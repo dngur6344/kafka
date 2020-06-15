@@ -47,3 +47,14 @@
 
     해당 명령어를 입력해 백그라운드로 kafka를 띄우려고 하는데 제대로 실행이 되지 않고 있다.
     문제를 좀 해결해야겠다.
+
+    문제를 해결했다.
+<img src="/image/kafka zookeeper fix.png"></img>
+
+    이 부분을 실제 ip주소가 아니라 localhost로 변경하였더니 실행이 잘된다. 이유는 아직 뭔지 모르겠다.
+    그럼 netstat - lntp | grep 9092 를 이용하여 제대로 실행되는지 확인해보자.
+<img src="/image/kafka success.png"></img>
+
+    제대로 실행이 되고 있다!
+  
+    
