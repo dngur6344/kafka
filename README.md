@@ -56,5 +56,32 @@
 <img src="/image/kafka success.png"></img>
 
     제대로 실행이 되고 있다!
-  
+---------------------------------------------------------------------------------------
+### Kafka topic 설정.
+    현재 broker는 id 0이며 해당 broker에는 아직 topic이 없다. 
+    topic이란 consumer가 구독하는 단위인데 여러 consumer들이 모인 
+    consumer group 하나가 하나의 topic을 담당한다. 
+    그렇다면 하나의 topic은 여러 consumer group에서 메세지를 가져갈 수 있고,
+    하나의 consumer group은 하나의 topic만 담당하므로
+    topic : consumer group = 1 : N 
+    관계라고 할 수 있겠다.
+    (이건 잘 몰랐는데 stack overflow에서 찾아봤더니 있다!
+    https://stackoverflow.com/questions/57753211/kafka-use-common-consumer-group-to-access-multiple-topics)
     
+    또한 topic은 여러 partition으로 나뉘는데 한 partition에 
+    같은 consumer group 내의 여러 consumer가 접근할 수 없다.
+    하지만 partition의 수보다 consumer group내의 consumer의 수가 적으면,
+    하나의 consumer가 여러 partition에서 메세지를 읽어온다.
+    
+    아무튼 다시 실습을 해보면
+<img src="/image/topic initial.png"></img>
+    
+    처음 실행시킨 것이기에 topic이 존재하지 않는다. 여기에 topic을 하나 만들자.
+<img src="/image/topic create.png"></img>
+    
+    이건 test라는 topic을 만들고 그 안에 partition을 두개를 할당한 것을 의미한다.
+    topic을 만들었으니 제대로 만들었는지 확인해보자.
+    
+<img src="/image/topic check.png"></img>
+    
+    제대로 만들어진 것을 확인할 수 있다!
