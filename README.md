@@ -113,9 +113,9 @@
     
     이유는 모르겠지만 시키는 대로 하고 producer와 consumer console을 각각 띄워본다.
     그리고 몇 개의 단어를 입력해봤더니
-<img src="/image/comm success.png"></img>
+<img src="/image/comm success2.png"></img>
     
-    왼쪽 화면이 producer이고 오른쪽 화면이 consumer인데 producer에서 보내는 메시지가
+    위쪽 화면이 producer이고 아래쪽 화면이 consumer인데 producer에서 보내는 메시지가
     consumer에서 제대로 출력되는 것을 볼 수 있다.
     
     kafka 서버가 제대로 구동되었으므로 이젠 Spring boot를 이용해서 
