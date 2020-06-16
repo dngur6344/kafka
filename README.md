@@ -90,3 +90,37 @@
 <img src="/image/partition check.png"></img>
 
     0번 broker에 partition이 0 과 1 두개가 위치함을 알 수 있다.
+    
+--------------------------------------------------------------------------------------------------------------
+### Producer - Consumer console 
+
+    topic에 대한 setting이 끝났으니 기본으로 주어지는 producer console 과
+    consumer console을 실행시켜서 올바르게 메시지를 주고받는지 확인해보자.
+    
+    먼저 명령어를 이용하여 producer console을 실행시키자
+    bin/kafka-console-producer.sh --broker-list {ip address}:9092 --topic {topic name}
+    
+    그런데 웬걸 에러가 뜨면서 실행이 되질 않는다.
+<img src="/image/producer error.png"></img>
+
+    그래서 구글링을 해본 결과 stack overflow에서 해답을 찾을 수 있었다.
+    https://stackoverflow.com/questions/47677549/kafka-zookeeper-connection-to-node-1-could-not-be-established-broker-may-no
+    
+    이유는 single node만을 이용해서 서버를 구성할 경우 server.properties의
+    listeners 항목에 localhost를 적어줘야 한다는 것이다.
+    
+<img src="/image/kafka re setting.png"></img>
+    
+    이유는 모르겠지만 시키는 대로 하고 producer와 consumer console을 각각 띄워본다.
+    그리고 몇 개의 단어를 입력해봤더니
+<img src="/image/comm success.png"></img>
+    
+    왼쪽 화면이 producer이고 오른쪽 화면이 consumer인데 producer에서 보내는 메시지가
+    consumer에서 제대로 출력되는 것을 볼 수 있다.
+    
+    kafka 서버가 제대로 구동되었으므로 이젠 Spring boot를 이용해서 
+    각각의 producer와 consumer를 구현하기로 계획을 세웠다.
+    
+    일단 계획은 partition이 두개니까 consumer project를 두개 작성을 할 것이고, 
+    partition 두개를 하나의 project에서 받을 경우와 두개의 project에 각각 하나씩
+    partition을 담당시켰을 떄 메시지를 읽는 시간을 비교해볼 계획이다.
