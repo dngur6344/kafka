@@ -85,3 +85,8 @@
 <img src="/image/topic check.png"></img>
     
     제대로 만들어진 것을 확인할 수 있다!
+    아까 설정한 2개의 partition도 0번 broker에 나뉘어졌는지 확인해보자
+    
+<img src="/image/partition check.png"></img>
+
+    0번 broker에 partition이 0 과 1 두개가 위치함을 알 수 있다.
