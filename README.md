@@ -36,6 +36,17 @@
     다른 client들이 해당 broker에 접근할 때 사용하는 주소인데
     설정을 안할 경우 listeners 항목과 똑같이 설정이 되고 
     좀 복잡한 네트워크 구조면 다르게 설정하는 것으로 알고 있다.
+    
+> bootstrap.servers : 카프카 클러스터에 처음 연결을 하기 위한 호스트와 포트 정보로 구성된 리스트 정보를
+> 나타낸다. 따라서 이 하나만 등록해도 되는데 이 호스트가 고장나면 이 호스트를 통해서만 카프카 클러스터에
+> 접속할 수 있으므로 다른 것들은 접속 불가.
+
+> server.properties 에 있는 listeners : 브로커가 사용하는 ip 정확히는 broker가 서버 소켓을 만드는데 
+> 사용하며 리스너 간에 동일 포트를 사용할 수는 없다.
+
+> advertiesed listeners : 외부 클라이언트가 카프카 브로커에 접근할 때 사용하는 ip. 얘를 비워 놓으면 
+> listener에 있는 ip가 할당이 된다.
+
 <img src="/image/kafka server zookeeper.png"></img>
     
     
@@ -124,3 +135,11 @@
     일단 계획은 partition이 두개니까 consumer project를 두개 작성을 할 것이고, 
     partition 두개를 하나의 project에서 받을 경우와 두개의 project에 각각 하나씩
     partition을 담당시켰을 떄 메시지를 읽는 시간을 비교해볼 계획이다.
+> 현재 linux 서버 용량이 꽉 차서 진행을 할 수가 없다... 그래도 회사에서 
+> SpringBoot를 이용해 consumer를 구현하였으며 받아온 메세지를 ElasticSearch로
+> 보내는 것까지 구현을 했다. 
+
+> 속도를 높이기 위해서 BulkAPI를 사용하였는데 일정 개수가 차면 보내는 것보다 
+> 일정 시간마다 해당 메소드를 사용하도록 cron을 걸어놓았다...
+
+> 개인적으로는 못하겠지만 회사에서 해본 것으로 만족을 하자... 
